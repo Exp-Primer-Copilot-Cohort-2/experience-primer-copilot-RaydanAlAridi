@@ -1,0 +1,1173 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{xcolor}  % for colors
+\usepackage{mathrsfs}
+\newtheorem{definition}{Definition}[subsection]
+\newtheorem{proposition}{Proposition}[subsection]
+\usepackage{graphicx} % Required for inserting images
+
+\theoremstyle{definition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{theorem}{Theorem}
+
+\title{Thesis}
+\author{Raydan Aridi}
+\date{July 2023}
+
+\begin{document}
+
+\maketitle
+\section{Preliminaries}
+\subsection{Topology}
+\begin{definition}
+    Let $X$ be a set, $\mathcal{P}(X)$ the collection of subsets of $X$ and $\tau \subseteq \mathcal{P}(X)$. If $\tau$ has the following properties
+\begin{enumerate}
+    \item $\emptyset, X \in \tau$;
+    \item $A, B \in \tau \Longrightarrow A \cap B \in \tau$;
+    \item $\forall i \in I, A_{i} \in \tau \Longrightarrow \cup_{i \in I} A_{i} \in \tau$
+
+\end{enumerate}
+
+
+then we say that $\tau$ is a topology on $X$ and $(X, \tau)$ is a topological space.
+
+\end{definition}
+\begin{definition}
+    Let $(X, \tau)$ be a topological space and $A$ a subset of $X$.
+
+\begin{enumerate}
+    \item If $A \in \tau$, then $A$ is said to be open.
+    \item If $X \backslash A \in \tau$, then $A$ is said to be closed.
+    \item Let $\tau_{1}$ be a topology on $X$. We say $\tau_{1}$ is weaker (smaller or coarser) than $\tau$ or $\tau$ is stronger (larger or finer) than $\tau_{1}$ if $\tau_{1} \subseteq \tau$.
+\end{enumerate}
+\end{definition}
+\begin{definition}
+    A set in $X$ is said to be closed if its compliment is open
+\end{definition}
+\begin{proposition}
+    Let $(X, \tau)$ be a topological space. Then
+\begin{enumerate}
+    \item $\emptyset$ and $X$ are closed.
+    \item $\forall i \in I, A_{i}$ is closed $\Longrightarrow \cap_{i \in I} A_{i}$ is closed.
+    \item $\forall 1 \leq i \leq n, A_{i}$ is closed $\Longrightarrow \cup_{i \in I} A_{i}$ is closed.
+\end{enumerate}
+\end{proposition}
+\begin{definition}
+     Let $(X, \tau)$ be a topological space and $x \in A \subseteq X$. We say that $A$ is a neighborhood (nhood) of $x$ if there is an open set $U$ such that
+
+$$
+x \in U \subseteq A
+$$
+\end{definition}
+\begin{definition}
+    Let $(X, \tau)$ be a topological space and $A$ a subset of $X$.
+    \begin{enumerate}
+        \item The interior of $A$ in $X$ is the set
+
+$$
+\stackrel{\circ}{A}=\operatorname{int}_{X}(A)=\bigcup\{O \subseteq A: O \in \tau\}
+$$
+        $\AA$ is open and it is the largest open set contained in $A$.
+
+        \item The closure of $A$ in $X$ is the set
+
+
+\begin{equation*}
+\bar{A}=c l_{X}(A)=\bigcap\{K \subseteq X: K \text { is closed and } A \subseteq K\} 
+\end{equation*}
+
+
+$\bar{A}$ is closed and it is the smallest closed set containing $A$.
+    \item  A cluster (or accumulation) point of $A$ is a point $x \in X$ such that
+
+$$
+\forall U \in N(x), \quad U \cap A \backslash\{x\} \neq \emptyset
+$$
+    \item A point $x \in A$ is called an isolated point of $A$ if there exists $U \in N(x)$ such that
+
+$$
+U \cap A=\{x\}
+$$
+
+    \end{enumerate}
+\end{definition}
+
+\begin{definition}[Compactness]
+A topological space $X$ is said to be \textbf{compact} if every open cover of $X$ has a finite subcover. That is, for every collection $\{U_\alpha\}_{\alpha \in A}$ of open sets in $X$ such that
+\[ X \subseteq \bigcup_{\alpha \in A} U_\alpha, \]
+there exists a finite subset $A' \subseteq A$ such that
+\[ X \subseteq \bigcup_{\alpha \in A'} U_\alpha. \]
+\end{definition}
+
+
+\begin{definition}
+    Let $\mathcal{B} \subseteq \tau$. We say that $\mathcal{B}$ is a base for $\tau$ (or for $X$ when no confusion can be result) if for any $A \in \tau$, we have
+
+$$
+A=\cup_{i \in I} O_{i} \quad \text { with } \quad O_{i} \in \mathcal{B}
+$$
+\end{definition}
+\begin{definition}
+     Let $\mathcal{S} \subseteq \tau$. We say that $\mathcal{S}$ is a sub-basis for $\tau$ provided the family of all finite intersections of members of $\mathcal{S}$ is a basis for $\tau$.
+\end{definition}
+
+\begin{definition}
+    Let $(X, \tau)$ be a topological space.
+    \begin{enumerate}
+        \item $X$ is said to be $T_{0}$-space if whenever $x$ and $y$ are distinct points in $X$, there is an open set containing one and not the other.
+        \item $\quad X$ is said to be $T_{1}$-space if whenever $x$ and $y$ are distinct points in $X$, there is a nhood of each not containing the other.
+        \item $\quad X$ is said to be $T_{2}$-space or Hausdorff if whenever $x$ and $y$ are distinct points in $X$, there are $U, V \in \tau$ such that $x \in U, y \in V$ and $U \cap V=\emptyset$.
+    \end{enumerate}
+
+\end{definition}
+\begin{definition}
+     Let $(X, \tau)$ be a topological space.
+    \begin{enumerate}
+        \item  A subset $A$ is said to be a nhood of $B \subseteq X$ if there is $U \in \tau$ such that $$
+B \subseteq U \subseteq A
+$$
+        \item Let $(Y, \Gamma)$ be a topological space. A function $f: X \longrightarrow Y$ is said to be continuous if for all $V \in \Gamma, f^{-1}(V) \in \tau$.
+
+
+        
+    \end{enumerate}
+\end{definition}
+\begin{definition} Separation Axioms in Topology:\\
+
+    \begin{enumerate}
+    \item \textbf{\(T_0\) (Kolmogorov) Space}:
+    \begin{itemize}
+        \item \textbf{Definition}: A space \(X\) is \(T_0\) if for any two distinct points \(x, y \in X\), there exists an open set that contains one of the points and not the other.
+        \item \textbf{Implication}: This ensures that points are topologically distinguishable, meaning the topology can distinguish between different points.
+    \end{itemize}
+
+    \item \textbf{\(T_1\) (Frechet) Space}:
+    \begin{itemize}
+        \item \textbf{Definition}: A space \(X\) is \(T_1\) if for every pair of distinct points \(x, y \in X\), each point has a neighborhood that does not contain the other point. Equivalently, every single-point set \(\{x\}\) is closed.
+        \item \textbf{Implication}: All \(T_1\) spaces are \(T_0\), but not all \(T_0\) spaces are \(T_1\).
+    \end{itemize}
+
+    \item \textbf{\(T_2\) (Hausdorff) Space}:
+    \begin{itemize}
+        \item \textbf{Definition}: A space \(X\) is \(T_2\) if for any two distinct points \(x, y \in X\), there exist disjoint open sets \(U\) and \(V\) such that \(x \in U\) and \(y \in V\).
+        \item \textbf{Implication}: All \(T_2\) spaces are \(T_1\), but not all \(T_1\) spaces are \(T_2\). \(T_2\) spaces ensure that limits of sequences (if they exist) are unique.
+    \end{itemize}
+
+    \item \textbf{\(T_{2.5}\) (Urysohn) Space}:
+    \begin{itemize}
+        \item \textbf{Definition}: A space \(X\) is \(T_{2.5}\) if for any two distinct points \(x, y \in X\), there exists a continuous function \(f: X \to [0, 1]\) such that \(f(x) = 0\) and \(f(y) = 1\).
+        \item \textbf{Implication}: All \(T_{2.5}\) spaces are \(T_2\), but not all \(T_2\) spaces are \(T_{2.5}\). \(T_{2.5}\) spaces are also known as completely Hausdorff spaces.
+    \end{itemize}
+
+    \item \textbf{\(T_3\) (Regular) Space}:
+    \begin{itemize}
+        \item \textbf{Definition}: A space \(X\) is \(T_3\) if it is \(T_1\) and for any closed set \(C \subset X\) and any point \(x \notin C\), there exist disjoint open sets \(U\) and \(V\) such that \(x \in U\) and \(C \subset V\).
+        \item \textbf{Implication}: All \(T_3\) spaces are \(T_1\), but not all \(T_1\) spaces are \(T_3\).
+    \end{itemize}
+
+    \item \textbf{\(T_{3.5}\) (Tychonoff or Completely Regular) Space}:
+    \begin{itemize}
+        \item \textbf{Definition}: A space \(X\) is \(T_{3.5}\) if it is \(T_1\) and for any closed set \(C \subset X\) and any point \(x \notin C\), there exists a continuous function \(f: X \to [0, 1]\) such that \(f(x) = 0\) and \(f(C) = 1\).
+        \item \textbf{Implication}: All \(T_{3.5}\) spaces are \(T_3\), but not all \(T_3\) spaces are \(T_{3.5}\).
+    \end{itemize}
+
+    \item \textbf{\(T_4\) (Normal) Space}:
+    \begin{itemize}
+        \item \textbf{Definition}: A space \(X\) is \(T_4\) if it is \(T_1\) and for any two disjoint closed sets \(A, B \subset X\), there exist disjoint open sets \(U\) and \(V\) such that \(A \subset U\) and \(B \subset V\).
+        \item \textbf{Implication}: All \(T_4\) spaces are \(T_3\), but not all \(T_3\) spaces are \(T_4\).
+    \end{itemize}
+\end{enumerate}
+
+
+
+\[
+T_4 \Rightarrow T_{3.5} \Rightarrow T_3 \Rightarrow T_2 \Rightarrow T_1 \Rightarrow T_0
+\]
+
+This chain shows the hierarchy of separation axioms, where each property implies the previous ones.
+
+
+
+\end{definition}
+
+\begin{definition}
+    Let $f: X \rightarrow Y$ such that:
+\begin{enumerate}
+    \item $f$ is bijective
+    \item $f$ is continuous
+    \item $f^-1$ is continuous
+\end{enumerate}
+Then, f is said to be a homeomorphism between $X$ and $Y$. Also, we say that the spaces $X$ and $Y$ are hoemeomorphic.
+\end{definition}
+
+\begin{definition}
+    If $f: X \rightarrow Y$ is a continuous injective function, and $f: X \rightarrow f(X)$ is a homeomorphism, then we call $f: X \rightarrow Y$ and Embedding of $X$ in $Y$, or simply an embedding.
+\end{definition}
+\begin{definition}
+    Product Topology: it is the coarsest topology that makes the projections continuous.
+\end{definition}
+
+\begin{definition}[Subspace Topology]
+    Let $(X, \tau)$ be a topological space and $A \subseteq X$. The subspace topology on $A$ is the collection of all sets of the form $A \cap U$, where $U \in \tau$.
+    
+\end{definition}
+
+\begin{theorem}
+    Subspace of a Hausdorff space is Hausdorff.
+\end{theorem}
+
+\begin{proof}
+    Let $(X, \tau)$ be a Hausdorff space and $A \subseteq X$. Let $x, y \in A$ be distinct points. Since $X$ is Hausdorff, there exist $U, V \in \tau$ such that $x \in U, y \in V$ and $U \cap V = \emptyset$. Then, $x, y \in A \cap U, A \cap V$ and $A \cap U \cap A \cap V = A \cap (U \cap V) = \emptyset$. Therefore, $A$ is Hausdorff.
+\end{proof}
+
+\begin{theorem}
+    A closed subset of a compact space is compact.
+\end{theorem}
+
+\begin{proof}
+    Let $(X, \tau)$ be a compact space and $A \subseteq X$ be a closed subset. Let $\{U_\alpha\}_{\alpha \in A}$ be an open cover of $A$. Since $A$ is closed, $X \backslash A$ is open. Then, $\{X \backslash A\} \cup \{U_\alpha\}_{\alpha \in A}$ is an open cover of $X$. Since $X$ is compact, there exists a finite subcover $\{X \backslash A, U_{\alpha_1}, ..., U_{\alpha_n}\}$. Then, $\{U_{\alpha_1}, ..., U_{\alpha_n}\}$ is a finite subcover of $A$. Therefore, $A$ is compact.
+\end{proof}
+
+\begin{definition}[compactification]
+    A compactification of a topological space $X$ is a compact Hausdorff space $Y$ such that $X$ 
+    
+\end{definition}
+
+\subsection{Functional Analysis}
+\begin{definition}[Continuity]
+Let $X$ and $Y$ be topological spaces. A function $f: X \to Y$ is said to be \textbf{continuous} at a point $x \in X$ if for every open set $V \subseteq Y$ containing $f(x)$, there exists an open set $U \subseteq X$ containing $x$ such that
+\[ f(U) \subseteq V. \]
+Equivalently, $f$ is continuous on $X$ if it is continuous at every point $x \in X$.
+\end{definition}
+
+\begin{definition}[Boundedness]
+Let $(X, d)$ be a metric space. A subset $A \subseteq X$ is said to be \textbf{bounded} if there exists a real number $M > 0$ such that
+\[ d(x, y) < M \]
+for all $x, y \in A$.
+\end{definition}
+
+\begin{definition}[Bounded Function]
+Let $(X, d_X)$ and $(Y, d_Y)$ be metric spaces. A function $f: X \to Y$ is said to be \textbf{bounded} if there exists a real number $M > 0$ such that
+\[ d_Y(f(x), f(x')) < M \]
+for all $x, x' \in X$.
+\end{definition}
+\begin{definition}
+    A smooth function $f: U \rightarrow \mathbb{R}$ on a subset $U$ of Euclidean space $\mathbb{R}^n$ is one that has continuous derivatives of all orders. Formally, $f$ is said to be smooth if it belongs to the space $C^\infty(U)$, which consists of all 
+\end{definition}
+\begin{definition}
+    A function $f: U \rightarrow \mathbb{R}$ on a subset $U$ of Euclidean space $\mathbb{R}^n$ is said to be compactly supported if its support, denoted by $\text{supp}(f)$, is a compact subset of $U$. In other words, outside a compact set, the function vanishes.
+\end{definition}
+
+\begin{definition}
+    Given a vector space $V$ over a field $\mathbb{K}$, the dual space $V'$ of $V$ is the vector space of all linear functionals on $V$. If $V$ is a normed space, the dual space $V'$ can be equipped with the operator norm.
+\end{definition}
+
+
+\begin{definition} 
+    Let $X$ be a topological vector space over a field $\mathbb{K}$.
+    \begin{enumerate}
+        
+        \item \textit{Weak topology}: 
+        The weak topology on \(X\) is defined in relation to the canonical pairing \(\langle X, X^* \rangle\). Recall that \(\langle \cdot , \cdot \rangle\) represents the canonical evaluation map, given by \(\langle x, x' \rangle = x'(x)\) for all \(x \in X\) and \(x' \in X^*\). Specifically, \(\langle \cdot , x' \rangle = x'(\cdot) = x'\). The weak topology is the coarsest topology on \(X\) that ensures all maps \(x' = \langle \cdot , x' \rangle: X \to \mathbb{K}\) are continuous for each \(x' \in X^*\).
+
+        \item \textit{Weak* topology}: 
+        The weak* topology on \(X^*\) is defined with respect to the canonical pairing \(\langle X, X^* \rangle\). Similar to the weak topology, \(\langle \cdot , \cdot \rangle\) is the canonical evaluation map, defined by \(\langle x, x' \rangle = x'(x)\) for all \(x \in X\) and \(x' \in X^*\). Here, \(\langle x, \cdot \rangle\) is used to define the topology. The weak* topology is the coarsest topology on \(X^*\) making all maps \(\langle x, \cdot \rangle: X^* \to \mathbb{K}\) continuous for each \(x \in X\). This topology is also referred to as the weak* topology.
+    \end{enumerate}
+
+\end{definition}
+
+
+
+
+\begin{definition}
+    A norm on a vector space $V$ over a field $\mathbb{K}$ is a function $\|\cdot\|: V \rightarrow \mathbb{R}$ satisfying the following properties:
+\begin{enumerate}
+    \item Positivity: $\|v\| \geq 0$ for all $v \in V$, and $\|v\| = 0$ if and only if $v = 0$.
+    \item Homogeneity: $\|\alpha v\| = |\alpha|\|v\|$ for all $\alpha \in \mathbb{K}$ and $v \in V$.
+    \item Triangle Inequality: $\|v + w\| \leq \|v\| + \|w\|$ for all $v, w \in V$.
+\end{enumerate}
+\end{definition}
+
+\begin{definition}
+    
+\end{definition}
+    A semi-norm on $V$ is a function $\|\cdot\|: V \rightarrow \mathbb{R}$ satisfying all properties of a norm except that it may not necessarily vanish only at the origin.
+
+\subsection{Distributions}
+\begin{definition}
+    Let's talk few words about distributions: There are 2 types of di
+\end{definition}
+\begin{definition}
+    compact spaces: a space $X$ is said to be compact if every open cover of $X$ has a finite subcover. it worked:)
+\end{definition}
+
+
+
+
+
+\section{The Setup and some proofs}
+Fix $D\in\mathbb{N}$.
+$\mathcal{D}$ is the space of smooth, compactly supported functions on $\mathbb{R}^D$, and $\mathcal{D'}$ is its dual, the space of distributions. The topology on $\mathcal{D'}$ is the weak* topology, i.e. the weakest topology that makes the semi-norms on $\mathcal{D'}$ continuous.\\ 
+The semi-norms on $\mathcal{D'}$ are indexed by $f\in\mathcal{D}$: $\rho\textsubscript{f}(\mathcal{T}) = | \mathcal{T}(f)|$ for any $\mathcal{T} \in \mathcal{D'}$. A neighborhood around $\mathcal{T}$ is defined as follows: \\
+$N\textsubscript{f\textsubscript{1}, f\textsubscript{2},... f\textsubscript{n};c}(\mathcal{T}) = \{ \rho\textsubscript{f\textsubscript{i}}(\mathcal{T}) = | \mathcal{T}(f\textsubscript{i})| < c: i=1, 2, ..., n\}$.\\
+
+
+
+\begin{definition}
+    Cylindrical Functions: A function F on $\mathcal{D'}$ is said to be cylindrical if there is $m \in \mathbb{N}$, and there are $f\textsubscript{1}, f\textsubscript{2}, ..., f\textsubscript{k} \in \mathcal{D}$ and a bounded continuous function $\widetilde{F}$ on $\mathbb{R}^m$ such that:
+\[
+F[T] = \widetilde{F} (f\textsubscript{1}(T), f\textsubscript{2}(T), ..., f\textsubscript{m}(T))\]
+Also we can write it as:
+\[
+F[T] = \widetilde{F} (T(f\textsubscript{1}), T(f\textsubscript{2}), ..., T(f\textsubscript{m}))
+\]
+
+\end{definition}
+
+
+\begin{lemma}
+    The set of cylindrical functions separates points from closed sets in the space of distributions $\mathcal{D'}$.
+\end{lemma}
+\begin{proof}
+    Let $A$ be any closed set in $\mathcal{D'}$, and $\widetilde{T}$ be any point in $\mathcal{D'}$ that is not in A. Then, we can always find a neighborhood $N\textsubscript{f\textsubscript{1}, f\textsubscript{2},... f\textsubscript{n};c}(\widetilde{T})$, such that $N\textsubscript{f\textsubscript{1}, f\textsubscript{2},... f\textsubscript{n};c}(\widetilde{T}) \cap A = \emptyset$, otherwise $\widetilde{T}$ is in A.\\\\
+    Let $x=(x\textsubscript{1},..., x\textsubscript{n}) \in \mathbb{R}^n$. $N\textsubscript{c}$ is a neighborhood of x of radius c and $\widetilde{F} : \mathbb{R}^n \rightarrow \mathbb{R}$
+such that: 
+\[
+\widetilde{F}(x) =
+\begin{cases}
+    0 & \text{if } x \notin N_c \\
+    1 - \frac{\sum_{i=1}^{n} |x-x_i|}{nc} & \text{if } x \in N_c
+\end{cases}
+\]
+Clearly, $\widetilde{F}$ is continuous and bounded.\\\\ Hence, 
+\[
+F[T] = \widetilde{F} (T(f\textsubscript{1}), T(f\textsubscript{2}), ..., T(f\textsubscript{m})) = \widetilde{F} (f\textsubscript{1}(T), f\textsubscript{2}(T), ..., f\textsubscript{m}(T)) 
+\] is a cylindrical function.
+Let $n\in \mathbb{Z}$, and $N\textsubscript{f\textsubscript{1}, f\textsubscript{2},... f\textsubscript{n};c}$ be the neighborhood of a distribution $\widetilde{T}$. \\
+\[
+F(T) =
+\begin{cases}
+    0 & \text{if } T \notin N\textsubscript{f\textsubscript{1}, f\textsubscript{2},... f\textsubscript{n};c}(\widetilde{T})\\
+    1 - \frac{\sum_{i=1}^{n} |(T-\widetilde{T})(fi)|}{nc} & \text{if } T \in N\textsubscript{f\textsubscript{1}, f\textsubscript{2},... f\textsubscript{n};c}(\widetilde{T})
+\end{cases}
+\]\\
+Now, for $T = \widetilde{T}$, $F(T) = 1$, and if $T$ is inside the neighborhood, the sum will always be less than $1$, and if $T$ is outside the neighborhood, we get zero.\\
+
+Therefore, this cylindrical function separates $\widetilde{T}$ from closed sets. Since $\widetilde{T}$ is arbitrary then the space is completely regular.
+
+\end{proof}
+Now we will show that those cylindrical functions will induce a compactification on the space of distributions following the proofs in James Munkres book.
+But we need to proof few theorems and lemmas before showing the compactification. 
+\begin{definition}
+    A collection $\mathcal{C}$ of subsets of $X$ is said to have the finite intersection property if for every finite subcollection\[
+    \{C_1, \ldots, C_n\}
+    \] of $\mathcal{C}$, the intersection $C_1 \cap \ldots \cap C_n$ is nonempty.
+\end{definition}
+\begin{theorem}
+Let $X$ be a topological space. Then $X$ is compact if and only if for every collection $\mathcal{C}$ of closed sets in $X$ having the finite intersection property, the intersection $$ \bigcap_{C \in \mathcal{C}} C
+$$
+of all the elements of $\mathcal{C}$ is nonempty.
+\end{theorem}
+\begin{lemma}[Zorn's Lemma]
+Let $A$ be a set that is strictly partially ordered. If every simply ordered subset of $A$ has an upper bound in $A$, then $A$ has a maximal element.
+\end{lemma}
+\begin{lemma}
+Let $X$ be a set; let $\mathcal{A}$ be a collection of subsets of $X$ having the finite intersection property. Then there is a collection $\mathscr{D}$ of subsets of $X$ such that $\mathscr{D}$ contains $\mathcal{A}$, and $\mathscr{D}$ has the finite intersection property, and no collection of subsets of $X$ that properly contains $\mathscr{D}$ has this property. That is $\mathscr{D}$ is maximal with respect to the finite intersection property.
+
+
+\end{lemma}
+
+\begin{proof}
+We construct $\mathscr{D}$ by using Zorn's lemma. Let $\mathbb{A}$  be the set who's elements are collections $\mathcal{B}$ of subsets of $X$ such that such that $\mathcal{B} \supset \mathcal{A}$ and $\mathcal{B}$ has the finite intersection property.
+
+\begin{enumerate}
+    \item $\mathbb{A}$ is not empty: This is true by the hypothesis of lemma 3. We have that the set $\mathcal{A}$ that is a collection of subsets of $X$.
+    \item $\subsetneq$ is our strict partial order on $\mathbb{A}$
+    \item Every chain has an upper bound in $\mathbb{A}$: Let $\mathbb{B} \subset \mathbb{A}$  be a chain of collections of subsets of $X$. Claim: $
+\mathcal{C}=\bigcup_{\mathcal{B} \in \mathbb{B}} \mathcal{B}
+$ is an upper bound of $\mathbb{B}$ in $\mathbb{A}$. $\mathcal{C}$ is an upper bound of $\mathbb{B}$ by how it's defined. We need to show that it is in $\mathbb{A}$. That is, $\mathcal{C} \supset \mathcal{A}$ and satisfies the finite intersection property. By the definition of $\mathcal{C}$, and since $\mathcal{B} \supset \mathcal{A}$ for any $\mathcal{B}$, then $\mathcal{C} \supset \mathcal{A}$. Now we show that $\mathcal{C}$ satisfies the finite intersection property. Let $C_1, C_2, ..., C_n$ be elements of $\mathcal{C}$. By the way $\mathcal{C}$ is constructed, there exist a $\mathcal{B}_{i}$ such that $C_i \in \mathcal{B}_{i}$, for all $i=1, 2, ..., n$. Now we have a set $\left\{\mathscr{B}_{1}, \ldots, \mathscr{B}_{n}\right\}$ whose elements are collections of subsets of $X$ and each element is in the chain $\mathbb{B}$. Therefore, we have a total order and there exist $\mathcal{B}_{k} \supset \mathcal{B}_{i}$ for all $i=1,2,..., n$. Then $C_1,..., C_n$ are elements of $\mathcal{B}_{k}$. But $\mathcal{B}_{k}$ satisfies the finite intersection property, hence, $C_1 \cap...\cap C_n$ is not empty and $\mathcal{C}$ satisfies the finite intersection property. So we proved our claim that $
+\mathcal{C}=\bigcup_{\mathcal{B} \in \mathbb{B}} \mathcal{B}
+$ is an upper bound of $\mathbb{B}$ in $\mathbb{A}$.
+\end{enumerate}
+We have all the sufficient conditions to apply Zorn's lemma on $\mathbb{A}$. Therefore, $\mathbb{A}$ has a maximal element. 
+
+
+\end{proof}
+
+
+
+
+\begin{lemma}
+    Let us consider a collection $\mathcal{D}$ of subsets of a set $X$ that is maximal with respect to the property of having nonempty finite intersections. We aim to establish two crucial properties:
+
+(a) If $B$ is a finite intersection of elements from $\mathcal{D}$, then $B \in \mathcal{D}$.
+
+(b) If a subset $A$ of $X$ intersects every element of $\mathcal{D}$, then $A$ itself is an element of $\mathcal{D}$.
+
+\end{lemma}
+
+
+\begin{proof}
+    (a): Let $\mathcal{E} = \mathcal{D} \cup \{B\}$. Claim: $\mathcal{E}$ satisfies the finite intersection property. Take any finite intersection of elements of $\mathcal{E}$. If $B$ is not chosen to be in the intersection then, definitely, the intersection is not empty since we are intersecting finitely many elements of $\mathcal{D}$ that, itself, has the finite intersection property. Nevertheless, $B$ can be written as intersection of finitely many elements of $\mathcal{D}$, so, again taking the intersection of $B$ with finitely many elements of $\mathcal{D}$, is same as intersecting another finite collection of elements of $\mathcal{D}$, which again would not be empty by the same reason. Hence, $\mathcal{E}$ satisfies the finite intersection property. By the maximality of $\mathcal{D}$, we have that $\mathcal{E} = \mathcal{D}$. Therefore, $B \in \mathcal{D}$.
+
+(b): Let $\mathcal{E} = \mathcal{D} \cup \{A\}$. Claim: $\mathcal{E}$ satisfies the finite intersection property. Choose any finite number of elements of $\mathcal{E}$. If none of the chosen elements is $A$, then we are intersecting elements of $\mathcal{D}$, so, the intersection will not be empty since $\mathcal{D}$ satisfies the finite intersection property. But also, since $A$ intersects each element of $\mathcal{D}$, even if $A$ was intersected with any finitely many elements of $\mathcal{D}$, the intersection of those finitely many elements of $\mathcal{D}$ are again in $\mathcal{D}$ by part(a). Hence, by our hypothesis on $A$ the intersection of $A$ with those finitely many elements would not be empty. Therefore, $\mathcal{E}$ satisfies the finite intersection property. But $\mathcal{D}$ is maximal with respect to the finite intersection property, this imply that $\mathcal{E} = \mathcal{D}$ and $A \in \mathcal{D}$.
+\end{proof}
+\begin{definition}
+    Let \[
+X = \prod_{\beta \in J} X_\beta,
+\]
+where $\beta \in J$ and $J$ is some index set. A subbasis of $X$ can be constructed as follows:
+Given $\beta \in J$, let $\pi_\beta: X \rightarrow X_\beta$ be the projection map, as usual.
+Subbasis:
+\[ S_\beta = \{ \pi_\beta^{-1}(U_\beta) \,|\, U_\beta \text{ is open in } X_\beta \} \]
+
+Union of Subbasis:
+\[ S = \bigcup_{\beta \in J} S_\beta \]
+
+Product Topology:
+The topology generated by the subbasis \( S \) is called the product topology.
+\end{definition}
+
+\begin{theorem}[Tychonoff Theorem]
+An arbitrary product of compact spaces is compact in the product topology.
+\end{theorem}
+
+\begin{proof}
+Take arbitrary many compact spaces $X_\beta$, where $\beta \in J$ and $J$ is some index set. Let
+\[
+X = \prod_{\beta \in J} X_\beta,
+\]
+From Theorem 1 we know that compactness of $X$ is equivalent to having
+\[
+\bigcap_{A \in \mathcal{A}} \bar{A}
+\]
+is not empty, where $\mathcal{A}$ is a collection of subsets of $X$ having the finite intersection property.
+
+However, later in the proof we need the properties of a maximal element.
+From Lemma 3, we know that there exist a collection of subsets of $X$, call it $\mathcal{D}$, such that $\mathcal{D}$ is maximal with respect to the finite intersection property and $\mathcal{D} \supset \mathcal{A}$. Now, if we show that $\bigcap_{D \in \mathscr{D}} \bar{D}$ is nonempty, then instantly \[
+\bigcap_{A \in \mathcal{A}} \bar{A}
+\] is not empty and hence $X$ is compact.
+
+Let $\pi_\beta: X \rightarrow X_\beta$ be as defined above in definition 2.2. Take any finite collection of $D_i$'s, say n of them, then: 
+$\pi_\beta(D_1) \cap ... \cap \pi_\beta(D_n) \supset \pi_\beta(D_1 \cap ... \cap D_n)$. But $\mathcal{D}$ satisfies the finite intersection property, so $\pi_\beta(D_1) \cap ... \cap \pi_\beta(D_n)$ is not empty.
+
+
+We know that each $X_\beta$ is compact, then, by theorem 1, $\bigcap_{D \in D} \overline{\pi_\beta(D)}$ is not empty for every $\beta$. Therefore, we can find 
+\[
+x_\beta \in \bigcap_{D \in \mathcal{D}} \overline{\pi_\beta(D)}.
+\]
+for every $\beta$, and $\left(x_\beta\right)_{\beta \in J}$ is an element of $X$.
+
+
+Claim: $\left(x_\beta\right)_{\beta \in J} \in \bigcap_{D \in \mathscr{D}} \bar{D}$.\\
+Proof of Claim: If $\left(x_\beta\right)_{\beta \in J} \in \pi_\beta^{-1}\left(U_\beta\right)$, then $U_\beta$ is a neighborhood of $x_\beta \in X_\beta$. But $x_\beta \in \overline{\pi_\beta(D)}$, then, there exist some $p \in \pi_\beta^{-1}\left(U_\beta\right) \cap D$. Since this is true for all $\beta$, we have that $\mathcal{D}$ intersects every subbasis element. By lemma 4 part b, every subbasis element, $\pi_\beta^{-1}\left(U_\beta\right)$, containing $\left(x_\beta\right)_{\beta \in J}$, is an element of $\mathcal{D}$. Recall that a basis is finite intersection of elements of the subbasis, hence, by lemma 4 part a, every basis element containing $x$ is an element of $\mathcal{D}$.
+Then, every element of $\mathscr{D}$ intersects every basis element containing $\mathbf{x}$ otherwise $\mathscr{D}$ would not satisfy the finite intersection property. Hence, our claim, $\left(x_\beta\right)_{\beta \in J} \in \bigcap_{D \in \mathscr{D}} \bar{D}$, is true.
+
+
+\end{proof}
+
+Now, we will show that the cylindrical functions induce a compactification on the space of distributions. \\\\
+The following theorem will show the existence of such a compactification.
+
+Having now Tychonof theorem, we are ready to proof the compactification of the space of distributions $\mathcal{D'}$
+
+
+
+
+
+
+
+\begin{lemma}[Important lemma] Let $X$ be a space; suppose that $h: X \rightarrow Z$ is an imbedding of $X$ in the compact Hausdorff space $Z$. Then there exists a corresponding compactification $Y$ of $X$; it has the property that there is an imbedding $H: Y \rightarrow Z$ that equals $h$ on $X$. The compactification $Y$ is uniquely determined up to equivalence.
+We call $Y$ the compactification induced by the imbedding $h$.
+\end{lemma}
+\begin{proof} Given $h$, let $X_0$ denote the subspace $h(X)$ of $Z$, and let $Y_0$ denote its closure in $Z$. Then $Y_0$ is a compact Hausdorff space and $\bar{X}_0=Y_0$; therefore, $Y_0$ is a compactification of $X_0$.
+We now construct a space $Y$ containing $X$ such that the pair $(X, Y)$ is homeomorphic to the pair $\left(X_0, Y_0\right)$. Let us choose a set $A$ disjoint from $X$ that is in bijective correspondence with the set $Y_0-X_0$ under some map $k: A \rightarrow Y_0-X_0$. Define $Y=X \cup A$, and define a bijective correspondence $H: Y \rightarrow Y_0$ by the rule
+$$
+\begin{array}{ll}
+H(x)=h(x) & \text { for } x \in X \\
+H(a)=k(a) & \text { for } a \in A .
+\end{array}
+$$
+
+Then topologize $Y$ by declaring $U$ to be open in $Y$ if and only if $H(U)$ is open in $Y_0$. The map $H$ is automatically a homeomorphism; and the space $X$ is a subspace of $Y$ because $H$ equals the homeomorphism $h$ when restricted to the subspace $X$ of $Y$. By expanding the range of $H$, we obtain the required imbedding of $Y$ into $Z$.
+
+Now suppose $Y_i$ is a compactification of $X$ and that $H_i: Y_i \rightarrow Z$ is an imbedding that is an extension of $h$, for $i=1,2$. Now $H_i$ maps $X$ onto $h(X)=X_0$. Because $H_i$ is continuous, it must map $Y_i$ into $\bar{X}_0$; because $H_i\left(Y_i\right)$ contains $X_0$ and is closed (being compact), it contains $\bar{X}_0$. Hence $H_i\left(Y_i\right)=\bar{X}_0$, and $H_2^{-1} \circ H_1$ defines a homeomorphism of $Y_1$ with $Y_2$ that equals the identity on $X$.
+\end{proof}
+\begin{theorem}[Embedding Theorem]
+    Let $X$ be a space in which one-point sets are closed. Suppose that $\left\{f_\alpha\right\}_{\alpha \in J}$ is an indexed family of continuous functions $f_\alpha: X \rightarrow$ $\mathbb{R}$ satisfying the requirement that for each point $x_0$ of $X$ and each neighborhood $U$ of $x_0$, there is an index $\alpha$ such that $f_\alpha$ is positive at $x_0$ and vanishes outside $U$. Then the function $F: X \rightarrow \mathbb{R}^J$ defined by
+    $$
+    F(x)=\left(f_\alpha(x)\right)_{\alpha \in J}
+    $$
+    is an imbedding of $X$ in $\mathbb{R}^J$. If $f_\alpha$ maps $X$ into $[0,1]$ for each $\alpha$, then $F$ imbeds $X$ in $[0,1]^J$.
+\end{theorem}
+\begin{theorem}[Existence of Compactification]
+    Since $\mathcal{D'}$ is completely regular, then, there exist a compactification $\mathcal{D}_c'$ of $\mathcal{D'}$ having the property that every bounded continuous map $f:\mathcal{D'} \rightarrow \mathbb{R}$ extends uniquely to a continuous map $g:\mathcal{D}_c' \rightarrow \mathbb{R}$
+\end{theorem}
+\begin{proof}
+    Let $(F_\alpha)_{\alpha \in I}$ be the collection of all cylindrical functions on $\mathcal{D}'$ indexed by some index set $I$. Now, we define the intervals:
+    \[
+    J_\alpha = [\inf(F_\alpha(\mathcal{D}')), \sup(F_\alpha(\mathcal{D}'))]
+    \]
+ So that for each $\alpha$, the interval $J_\alpha$ contains $F_\alpha(\mathcal{D}')$. Then, we define the function: 
+    \[
+    \psi: \mathcal{D}' \rightarrow \prod_{\alpha\in I} J_{\alpha}
+    \]
+such that
+    \[
+    \psi(T) = (F_\alpha(T))_{\alpha \in I}
+    \]
+    Now, by Tychonoff theorem, $\prod J_{\alpha}$ is compact. But we have also showed that the space $\mathcal{D}'$ is completely separable. More precisely, cylindrical functions separates points from closed set in $\mathcal{D}'$. Then by theorem about embedding we know that $\psi$ is an embedding. Now, due to important lemma we have the following 2 facts:
+    \begin{enumerate}
+        \item  there exist a compactification $\mathcal{D}_c'$ of $\mathcal{D}_c$ induced by the embedding $\psi$
+        \item there exist an embedding $\Psi: \mathcal{D}_c' \rightarrow \prod_{\alpha\in I} J_{\alpha}$ such that $\Psi|_{\mathcal{D}'} = \psi$
+    \end{enumerate}
+Now, any cylindrical function $F \in (F_\alpha)_{\alpha \in I}$ is equal to some $F_{\alpha_0}$ for some $\alpha_0 \in I$. Let $p_{\alpha_0}: \prod I_\alpha \rightarrow I_{\alpha_0}$. $p_{\alpha_0}$ is a projection and by the definition of the product topology, $p_{\alpha_0}$ is continuous. Also, $\Psi$ is continuous since it is an embedding. Hence, 
+\[
+p_{\alpha_0} \circ \Psi: \mathcal{D}_c' \rightarrow I_{\alpha_0}
+\]
+is continuous. Also notice that for any $T \in \mathcal{D}'$:
+\[
+p_{\alpha_0} ( \Psi(T)) = p_{\alpha_0} ( \psi(T)) =p_{\alpha_0} ((F_\alpha(T))_{\alpha \in I}) = F_{\alpha_0}
+\]
+Therefore, any cylindrical function $F$ on $\mathcal{D}'$ extends to $\mathcal{D}_c'$
+    
+   
+\end{proof}
+
+\section{C(x,y)=(Qx,y)}
+Let $X$ be a real Hilbert space, and let $C : X \times X \rightarrow \mathbb{R}$ be bilinear, symmetric, and continuous. We want to prove that there exists a unique self-adjoint operator $Q \in X^*$ such that $C(x, y) = \langle Qx, y \rangle_X$, for every $x, y \in X$.
+
+\begin{proof}
+First, we will show the existence of such an operator. Define a bounded linear functional $f_y : X \rightarrow \mathbb{R}$ for each $y \in X$ as $f_y(x) = C(x, y)$. By the Riesz representation theorem, for each $y \in X$, there exists a unique element $Qy \in X$ such that $f_y(x) = \langle Qy, x \rangle_X$ for all $x \in X$. This allows us to define a linear operator $Q : X \rightarrow X$ such that $Qy = Q_y$ for all $y \in X$.
+
+Next, we will show that $Q$ is self-adjoint. For any $x, y \in X$, we have
+\begin{align*}
+\langle Qx, y \rangle_X &= f_y(x) \\
+&= C(x, y) \\
+&= C(y, x) \quad \text{ (due to symmetry of } B)\\
+&= f_x(y) \\
+&= \langle Qy, x \rangle_X.
+\end{align*}
+
+Therefore, $Q$ is self-adjoint.
+
+Now, we have shown the existence of a self-adjoint operator $Q$ such that $C(x, y) = \langle Qx, y \rangle_X$ for all $x, y \in X$.
+
+To prove uniqueness, assume that there exists another self-adjoint operator $Q'$ satisfying the same condition. Then, for all $x, y \in X$,
+\begin{align*}
+B(x, y) &= \langle Q'x, y \rangle_X \\
+&= \langle Q'x, Qy \rangle_X \quad \text{ (using the given condition)}.
+\end{align*}
+
+Since this holds for all $x, y \in X$, we have $Q'x = Qy$ for all $x, y \in X$, which implies $Q' = Q$.
+
+Therefore, the operator $Q$ is unique.
+
+\end{proof}
+\section{From Integral to summation}
+Consider complex valued $2\pi$-periodic functions $f(x)$ on $\mathbb{R}^D$. Then, we can write $f(x)$ as Forrier series:
+\[
+f(x) = \sum_{n_1,\ldots, n_D} a_{n_1,..., n_D} e^{i(n_1 \theta_1+\ldots+n_D \theta_D)}
+\]
+where $a_{n_1,..., n_D}$ are the Forrier coefficients of $f$.\\
+Then, 
+\[
+(-\nabla^2 + 1)f(x)=\sum_{n_1,\ldots, n_D} (n_1^2 +...+ n_D^2 + 1)a_{n_1,..., n_D} e^{i(n_1 \theta_1+\ldots+n_D \theta_D)}
+\]
+this implies:
+\[
+(-\nabla^2 + 1)^{-1} f(x)=\sum_{n_1,\ldots, n_D} (n_1^2 +...+ n_D^2 + 1)^{-1 }a_{n_1,..., n_D} e^{i(n_1 \theta_1+\ldots+n_D \theta_D)}
+\]
+Now for any $f$ and $g$ that are complex valued $2\pi$-periodic, we have:
+\[
+f(x) = \sum_{n_1,\ldots, n_D} a_{n_1,..., n_D} e^{i(n_1 \theta_1+\ldots+n_D \theta_D)}
+\]
+and
+\[
+g(x) = \sum_{n_1,\ldots, n_D} b_{n_1,..., n_D} e^{i(n_1 \theta_1+\ldots+n_D \theta_D)}
+\]
+So, if we substitute in $\int_{\mathbb{R}}\ldots\int_{\mathbb{R}} \left(\overline{f} (-\nabla^2 + 1)^{-1}g\right)(x)$, we get:
+\[
+\int_{\mathbb{R}}\ldots\int_{\mathbb{R}} \left(\overline{f} (-\nabla^2 + 1)^{-1}g\right)(x) dx_1 \ldots dx_D
+\]
+\[
+=\int_{0}^{2\pi}\ldots\int_{0}^{2\pi}\sum_{n_1,\ldots, n_D} a_{n_1,..., n_D} e^{i(n_1 \theta_1+\ldots+n_D \theta_D)} \sum_{m_1,\ldots, m_D} (m_1^2 +...+ m_D^2 + 1)^{-1} \overline{b_{m_1,..., m_D}} e^{-i(m_1 \theta_1+\ldots+m_D \theta_D)} d\theta
+\]
+\[
+=\int_{0}^{2\pi}\ldots\int_{0}^{2\pi}\sum_{n_1,\ldots, n_D,m_1,\ldots,m_D}  \frac{a_{n_1,..., n_D} \overline{b_{n_1,..., n_D}}}{(m_1^2 +...+ m_D^2 + 1)} d\theta_1d\theta_2 \ldots e^{i((n_1-m_1) \theta_1+\ldots+(n_D-m_D) \theta_D)} d\theta_1 \ldots d\theta_D
+\]
+When $n_i \neq m_i$ we get a $2\pi$, otherwise $n_i=m_i$. Therefore we get:
+\[
+\int_{\mathbb{R}}\ldots\int_{\mathbb{R}} \left(\overline{f} (-\nabla^2 + 1)^{-1}g\right)(x) dx_1 \ldots dx_D = (2\pi)^D \sum_{n_1,\ldots, n_D}  \frac{a_{n_1,..., n_D}\overline{b_{n_1,..., n_D}}}{(n_1^2 +...+ n_D^2 + 1)}
+\]
+\section{The inner product space and its dual}
+Let $X$ be a Hilbert space and $\alpha > 0$. Elements of this space are in the form of $a_{n_1,..., n_D}$, where the $n_i$'s are integers, with the inner product 
+\[
+\colorbox{red!20}{\(\boxed{\langle a_{n_1,\ldots,n_D}, b_{n_1,\ldots,n_D} \rangle = \sum_{n_1,\ldots,n_D} (n_1^2 + \ldots + n_D^2 + 1)^\alpha a_{n_1,\ldots,n_D} \cdot \overline{b_{n_1,\ldots,n_D}}}\)}
+\]
+
+Hence, an orthonormal basis is:
+\[
+e_k = (0,..., (n_1^2 +...+ n_D^2 + 1)^{-\frac{\alpha}{2}},0,...)
+\]
+Now define
+\[Q(a_{n_1,..., n_D}) = \frac{a_{n_1,..., n_D}}{(n_1^2 + \ldots + n_D^2 + 1)^{1+\alpha}}
+\]
+Then, 
+\[
+\langle Qe_k, e_k \rangle = \sum_{n_1,..., n_D} (n_1^2 +...+ n_D^2 + 1)^{\alpha + 1}
+\]
+We will show that $Q$ is a self adjoint trace class operator.\\
+Q is self adjoint:
+\[
+\langle Qa_{n_1,..., n_D},b_{n_1,..., n_D} \rangle = \sum_{n_1,\ldots, n_D} \frac{a_{n_1,\ldots, n_D}}{(n_1^2 + \ldots + n_D^2 + 1)} \cdot \overline{b_{n_1,\ldots, n_D}}
+\]
+\[
+= \sum_{n_1,\ldots, n_D} a_{n_1,\ldots, n_D} \cdot \frac{\overline{b_{n_1,\ldots, n_D}}}{(n_1^2 + \ldots + n_D^2 + 1)}= \langle a_{n_1,..., n_D},Qb_{n_1,..., n_D} \rangle
+\]
+Q is a trace class:
+
+Let the function \(f:\mathbb{R}^n \rightarrow \mathbb{R} \) be defined as \(f(\mathbf{x}) = \frac{1}{(x_1^2 + \ldots + x_D^2 + 1)^{\alpha + 1}}\).
+
+Let \(n_i\) be the ceiling of \(x_i\) when \(n_i \geq 0\) and the floor of \(x_i\) when \(n_i \leq 0\). Then, we have:
+\[
+\frac{1}{(n_1^2 + \ldots + n_D^2 + 1)^{\alpha + 1}} \leq \frac{1}{(x_1^2 + \ldots + x_D^2 + 1)^{\alpha + 1}}
+\]
+
+Then,
+\[
+\sum_{n_1,\ldots,n_D} \frac{1}{(n_1^2 + \ldots + n_D^2 + 1)^{\alpha + 1}} \leq \iint_{\mathbb{R}} \ldots \int_{\mathbb{R}} \frac{1}{(x_1^2 + \ldots + x_D^2 + 1)^{\alpha + 1}} \,dx_1 \ldots dx_D
+\]
+
+\[
+\leq \lim_{{r \to \infty}} \int_{0}^{2\pi} \ldots \int_{0}^{2\pi} \int_{0}^{r} \frac{1}{(1+r^2)^{\alpha + 1}} \cdot r^{D-1} \sin^{D-2}(\theta_1) \sin^{D-3}(\theta_2) \ldots \sin(\theta_{D-2}) \,dr \,d\theta_1 \ldots d\theta_{D-1}
+< \infty
+\]
+
+\subsection{$X^*$ is the dual of $X$}
+ 
+Let $X'$ be a Hilbert space such that the elements of this space are in the form of $a'_{n_1,..., n_D}$, where the $n_i$'s are integers, with the inner product 
+\begin{align}
+    \langle a'_{n_1,..., n_D},b'_{n_1,..., n_D} \rangle &= \sum_{n_1,..., n_D} (n_1^2 +...+ n_D^2 + 1)^{-\alpha} a'_{n_1,..., n_D} \cdot \overline{b'_{n_1,..., n_D}} \label{1}
+\end{align}
+
+Now we prove that $X'$ is the dual of $X$. \\
+First direction, we show that for any elements $a_{n_1,..., n_D} \in X$ and $a'_{n_1,..., n_D} \in X'$, if $a'_{n_1,..., n_D}$ satisfies
+\begin{align}
+    \sum_{n_1,..., n_D} (n_1^2 +...+ n_D^2 + 1)^{-\alpha} \left|{a'_{n_1,..., n_D}}\right|^2 < \infty \label{2}
+\end{align} and $a_{n_1,..., n_D}$ satisfies 
+\begin{align}
+   \sum_{n_1,..., n_D} (n_1^2 +...+ n_D^2 + 1)^{\alpha} \left|{a_{n_1,..., n_D}}\right|^2 < \infty \label{3}
+\end{align}
+then,
+\begin{align}
+   \sum_{n_1,..., n_D} \overline{a'_{n_1,..., n_D}} \cdot a_{n_1,..., n_D} =  \left|a'_{n_1,..., n_D} (a_{n_1,..., n_D})\right| < \infty \label{4}
+\end{align}
+\begin{proof}
+    Multiplying equations$~\eqref{2}^{\frac{1}{2}}$ and $~\eqref{3}^{\frac{1}{2}}$, we get:
+\[ \left(\sum_{n_1,..., n_D} (n_1^2 +...+ n_D^2 + 1)^{\alpha} ({a_{n_1,..., n_D}})^2\right)^{\frac{1}{2}} \cdot  \left(\sum_{n_1,..., n_D} (n_1^2 +...+ n_D^2 + 1)^{-\alpha} ({a'_{n_1,..., n_D}})^2\right)^{\frac{1}{2}}  < \infty \]
+then, 
+\[ \left(\sum_{n_1,..., n_D} \left((n_1^2 +...+ n_D^2 + 1)^{\frac{\alpha}{2}} {a_{n_1,..., n_D}}\right)^2\right)^{\frac{1}{2}} \cdot  \left(\sum_{n_1,..., n_D} \left((n_1^2 +...+ n_D^2 + 1)^{-\frac{\alpha}{2}}{a'_{n_1,..., n_D}}\right)^2\right)^{\frac{1}{2}}  < \infty \]
+then by Cauchy-Schwarz on the sequences $$(n_1^2 +...+ n_D^2 + 1)^{\frac{\alpha}{2}} {a_{n_1,..., n_D}}$$ and $$(n_1^2 +...+ n_D^2 + 1)^{-\frac{\alpha}{2}}{a'_{n_1,..., n_D}}$$\\
+\[ \sum_{n_1,..., n_D} (n_1^2 +...+ n_D^2 + 1)^{-\frac{\alpha}{2}} (n_1^2 +...+ n_D^2 + 1)^{\frac{\alpha}{2}} ({a_{n_1,..., n_D}}) ({a'_{n_1,..., n_D}}) 
+\]
+\[ = \sum_{n_1,..., n_D} ({a_{n_1,..., n_D}}) ({a'_{n_1,..., n_D}}) 
+\]
+\[ \left(\sum_{n_1,..., n_D} \left((n_1^2 +...+ n_D^2 + 1)^{\frac{\alpha}{2}} {a_{n_1,..., n_D}}\right)^2\right)^{\frac{1}{2}} \cdot  \left(\sum_{n_1,..., n_D} \left((n_1^2 +...+ n_D^2 + 1)^{-\frac{\alpha}{2}}{a'_{n_1,..., n_D}}\right)^2\right)^{\frac{1}{2}}  < \infty \]
+
+Hence ~\eqref{4} is true.
+\end{proof}
+
+Second direction, we show that any element in the dual basis satisfies:
+\[
+\sum_{n_1,..., n_D} (n_1^2 +...+ n_D^2 + 1)^{-\alpha} \left|{a'_{n_1,..., n_D}}\right|^2 < \infty
+\]
+\begin{proof}
+We can construct the dual basis of the dual space $X^*$ by saying that $e^1, e^2,\ldots$ in $X^*$ such that 
+\[
+e^i\cdot e_j=
+\begin{cases}
+   1 &\text{if } i=j\\
+   0 &\text{if } i \neq j
+\end{cases}
+\]
+So, \[
+e^i = (0,..., (n_1^2 +...+ n_D^2 + 1)^{\frac{\alpha}{2}},0,...)
+\]
+and this clearly an orthonormal basis given that the inner product in our dual space is 
+\[
+\langle a'_{n_1,\ldots,n_D}, b'_{n_1,\ldots,n_D} \rangle = \sum_{n_1,\ldots,n_D} (n_1^2 + \ldots + n_D^2 + 1)^{-\alpha} a'_{n_1,\ldots,n_D} \cdot \overline{b'_{n_1,\ldots,n_D}}
+\]
+Then any element in $a'_{n_1,\ldots,n_D} \in X^*$ can be written as:
+\[
+a'_{n_1,\ldots,n_D} = \sum_i r_i e^i
+\]
+where $i \in I$ for some index set I.\\
+Then we have that:
+
+
+\[
+\sum_{n_1,..., n_D} (n_1^2 +...+ n_D^2 + 1)^{-\alpha} \left|{a'_{n_1,..., n_D}}\right|^2 
+\]
+\[
+= \sum_{n_1,..., n_D} (n_1^2 +...+ n_D^2 + 1)^{-\alpha} \left|\sum_i r_i e^i\right|^2
+\]
+\[
+= \sum_{n_1,..., n_D} \left((n_1^2 +...+ n_D^2 + 1)^{-\frac{\alpha}{2}} \left|\sum_i r_i e^i\right|\right)^2
+\]
+\[
+= \sum_{n_1,..., n_D} \left( \left|\sum_i r_i f_i\right|\right)^2
+\]
+Where $f_i = (0,..., (n_1^2 +...+ n_D^2 + 1)^{\frac{\alpha}{2}}(n_1^2 +...+ n_D^2 + 1)^{\frac{-\alpha}{2}},0,...)$\\
+But we can now pull out $(n_1^2 +...+ n_D^2 + 1)^{\frac{\alpha}{2}}$ and we get:
+\[
+= \sum_{n_1,..., n_D} \left((n_1^2 +...+ n_D^2 + 1)^{\frac{\alpha}{2}} \left|\sum_i r_i e_i\right|\right)^2
+\]
+\[
+= \sum_{n_1,..., n_D} (n_1^2 +...+ n_D^2 + 1)^{\alpha} \left|\sum_i r_i e_i\right|^2
+\]
+But $\left|\sum_i r_i e_i\right| \in X$ so $ \sum_{n_1,..., n_D} (n_1^2 +...+ n_D^2 + 1)^{\alpha} \left|\sum_i r_i e_i\right|^2$ has to be finite.\\
+Therefore, 
+\[
+\sum_{n_1,..., n_D} (n_1^2 +...+ n_D^2 + 1)^{-\alpha} \left|{a'_{n_1,..., n_D}}\right|^2 < \infty
+\]
+\end{proof}
+\section{Computing the Expression in the Paper}
+\begin{theorem}
+  If $\gamma$ is a Gaussian measure on $X$ then its characteristic function is given by $$
+\hat{\gamma}(f)=\exp \left\{i\langle f, a\rangle_{X}-\frac{1}{2}\langle Q f, f\rangle_{X}\right\}, \quad f \in X
+$$, where $a \in X$ and $Q$ is a self-adjoint nonnegative trace-class operator. Conversely, for every $a \in X$ and for every nonnegative self-adjoint trace-class operator $Q$, the function $\hat{\gamma}$ in $$
+\hat{\gamma}(f)=\exp \left\{i\langle f, a\rangle_{X}-\frac{1}{2}\langle Q f, f\rangle_{X}\right\}, \quad f \in X
+$$ is the characteristic function of a Gaussian measure with mean $a$ and covariance operator $Q$.  
+\end{theorem} 
+
+Now we will work on the integral: 
+$$\int F[\phi]e^{-\int \phi_{\Lambda_k} \nabla^2 \phi_{\Lambda_k} + \phi_{\Lambda_k}^2 dx}d\mu$$
+However, for the integral to be well defined, we let $\phi_{\Lambda_k}=\phi \star {\Lambda_k}$. Let $\widehat{\phi}=a_{n_1,\ldots,n_D}$ and $\hat{\Lambda_k}=e^{-\frac{n_1^2+\ldots+n_D^2}{\Lambda_k}}$. Then we have: $$\widehat{\phi_{\Lambda_k}} = a_{n_1,\ldots,n_D}e^{-\frac{n_1^2+\ldots+n_D^2}{\Lambda_k}}$$ and 
+$$
+\widehat{\nabla^2 \phi_{\Lambda_k}} = -4\pi(n_1^2+\ldots+n_D^2)\widehat{\phi_{\Lambda_k}}= -4\pi(n_1^2+\ldots+n_D^2)a_{n_1,\ldots,n_D}e^{-\frac{n_1^2+\ldots+n_D^2}{\Lambda_k}}
+$$
+
+
+
+Then, $$\int \phi_{\Lambda_k} \nabla^2 \phi_{\Lambda_k}dx = \widehat{\phi_{\Lambda_k} \nabla^2 \phi_{\Lambda_k}}(0) = \widehat{\phi_{\Lambda_k}} \star \widehat{\nabla^2 \phi_{\Lambda_k}}(0)$$
+$$
+= \left(\sum_{n_1,\ldots,n_D} \left(a_{n_1-k_1,\ldots,n_D-k_1}\right)e^{-\frac{(n_1-k_1)^2+\ldots+(n_D-k_D)^2}{\Lambda_k}}(-4\pi)(n_1^2+\ldots+n_D^2)a_{n_1,\ldots,n_D}e^{-\frac{n_1^2+\ldots+n_D^2}{\Lambda_k}}\right)_{k_1,\ldots,k_D}(0)
+$$
+$$
+=\sum_{n_1,\ldots,n_D} \left(a_{n_1,\ldots,n_D}\right)e^{-\frac{(n_1)^2+\ldots+(n_D)^2}{\Lambda_k}}(-4\pi)(n_1^2+\ldots+n_D^2)a_{n_1,\ldots,n_D}e^{-\frac{n_1^2+\ldots+n_D^2}{\Lambda_k}}
+$$
+$$
+=\sum_{n_1,\ldots,n_D}
+(-4\pi)(n_1^2+\ldots+n_D^2) \left(a_{n_1,\ldots,n_D} e^{-\frac{(n_1)^2+\ldots+(n_D)^2}{\Lambda_k}}\right)^2 
+$$
+and 
+$$
+\int \phi_{\Lambda_k}^2 = \widehat{\phi_{\Lambda_k}^2}(0)=\widehat{\phi_{\Lambda_k}}\star \widehat{\phi_{\Lambda_k}}(0)
+$$
+$$= 
+\left(\sum_{n_1,\ldots,n_D} a_{n_1-k_1,\ldots,n_D-k_D}e^{-\frac{(n_1-k_D)^2+\ldots+(n_D-k_D)^2}{\Lambda_k}}a_{n_1,\ldots,n_D}e^{-\frac{n_1^2+\ldots+n_D^2}{\Lambda_k}}\right)_{k_1,\ldots,k_D}(0)
+$$
+$$= 
+\sum_{n_1,\ldots,n_D} a_{n_1,\ldots,n_D}e^{-\frac{(n_1)^2+\ldots+(n_D)^2}{\Lambda_k}}a_{n_1,\ldots,n_D}e^{-\frac{n_1^2+\ldots+n_D^2}{\Lambda_k}}
+$$
+$$= 
+\sum_{n_1,\ldots,n_D} \left(a_{n_1,\ldots,n_D}e^{-\frac{(n_1)^2+\ldots+(n_D)^2}{\Lambda_k}}\right)^2
+$$
+Now let $F(\phi) = e^{\sum_{n_1,\ldots,n_D}iJ_{n_1,\ldots,n_D} a_{n_1,\ldots,n_D}}$ and we plug in the integral:
+$$
+\int F[\phi]e^{-\sum_{n_1,\ldots,n_D}
+(-4\pi)(n_1^2+\ldots+n_D^2) \left(a_{n_1,\ldots,n_D} e^{-\frac{(n_1)^2+\ldots+(n_D)^2}{\Lambda_k}}\right)^2  -\sum_{n_1,\ldots,n_D} \left(a_{n_1,\ldots,n_D}e^{-\frac{(n_1)^2+\ldots+(n_D)^2}{\Lambda_k}}\right)^2}d\mu
+$$
+$$
+=\int e^{\sum_{n_1,\ldots,n_D}iJ_{n_1,\ldots,n_D} a_{n_1,\ldots,n_D}}e^{\sum_{n_1,\ldots,n_D}
+\left(4\pi(n_1^2+\ldots+n_D^2)-1\right) \left(a_{n_1,\ldots,n_D} e^{-\frac{(n_1)^2+\ldots+(n_D)^2}{\Lambda_k}}\right)^2}d\mu
+$$
+$$
+=\int \prod_{n_1,\ldots,n_D}e^{iJ_{n_1,\ldots,n_D} a_{n_1,\ldots,n_D} +
+\left(4\pi(n_1^2+\ldots+n_D^2)-1\right) \left(a_{n_1,\ldots,n_D} e^{-\frac{(n_1)^2+\ldots+(n_D)^2}{\Lambda_k}}\right)^2}d\mu
+$$
+$$
+=\int \prod_{n}e^{iJ_{n} a_{n} +
+\left(4\pi(n^2)-1\right) \left(a_{n} e^{-\frac{(n)^2}{\Lambda_k}}\right)^2}d\mu
+$$
+where $n=n_1,\ldots,n_D$ and $n^2 = (n_1)^2+\ldots+(n_D)^2$\\
+Now, to proceed we have to figure out what is $d\mu$.
+We know from theorem 3 that if $a=0$ and $Q(a_{n_1,..., n_D}) = \frac{a_{n_1,..., n_D}}{(n_1^2 + \ldots + n_D^2 + 1)^{1+\alpha}}$, then:
+\[
+\hat{\mu}(\phi)=e^{-\frac{1}{2}\langle Q J_{n_1,\ldots,n_D}, J_{n_1,\ldots,n_D} \rangle_{X}}
+\]
+\[
+=e^{-\frac{1}{2}\sum_{n_1,\ldots, n_D} \frac{J_{n_1,\ldots, n_D}^2}{(n_1^2 + \ldots + n_D^2 + 1)} }
+\]
+\[
+=\prod_{n_1,\ldots,n_D}e^{- \frac{J_{n_1,\ldots, n_D}^2}{2(n_1^2 + \ldots + n_D^2 + 1)} }
+\]
+But we also know that:
+\[
+d\mu(\phi)=\prod_{n_1,\ldots,n_D}e^{-(B_{n_1,\ldots,n_D})(a_{n_1,\ldots,n_D})^2}A_{n_1,\ldots,n_D} da_{n_1,\ldots,n_D}
+\]
+Where $A_{n_1,\ldots,n_D}$ and $B_{n_1,\ldots,n_D}$ are coefficients independent of $a_{n_1,\ldots,n_D}$.\\
+Then we have:
+\[
+\hat{\mu}(\phi)=\int e^{\sum_{n_1,\ldots,n_D}iJ_{n_1,\ldots,n_D} (a_{n_1,\ldots,n_D})}d\mu(\phi)
+\]
+\[
+=\int e^{\sum_{n_1,\ldots,n_D}iJ_{n_1,\ldots,n_D} a_{n_1,\ldots,n_D}}\prod_{n_1,\ldots,n_D}e^{-(B_{n_1,\ldots,n_D})(a_{n_1,\ldots,n_D})^2}A_{n_1,\ldots,n_D}da_{n_1,\ldots,n_D}
+\]
+\[
+=\int \prod_{n_1,\ldots,n_D}e^{iJ_{n_1,\ldots,n_D} a_{n_1,\ldots,n_D}} \prod_{n_1,\ldots,n_D}e^{-(B_{n_1,\ldots,n_D})(a_{n_1,\ldots,n_D})^2}A_{n_1,\ldots,n_D}da_{n_1,\ldots,n_D}
+\]
+Apply Fubini Theorem and we get:
+\[
+= \prod_{n_1,\ldots,n_D}\int e^{iJ_{n_1,\ldots,n_D} a_{n_1,\ldots,n_D}-(B_{n_1,\ldots,n_D})(a_{n_1,\ldots,n_D})^2} A_{n_1,\ldots,n_D}da_{n_1,\ldots,n_D}
+\]
+Now using the formula of an integral of a gaussian function we get:
+\[
+= \prod_{n_1,\ldots,n_D} A_{n_1,\ldots,n_D} \sqrt{\frac{\pi}{B_{n_1,\ldots,n_D} }} e^{-\frac{(J_{n_1,\ldots,n_D})^2}{4*B_{n_1,\ldots,n_D} }}
+\]
+Now comparing this to what we got from theorem 3 we notice that:
+\[
+B_{n_1,\ldots,n_D} = \frac{1}{2}\left(n_1^2+\ldots+n_D^2+1\right)
+\]
+
+and
+\[
+A_{n_1,\ldots,n_D} = \left(\frac{\pi} {B_{n_1,\ldots,n_D} }\right)^{-\frac{1}{2}}
+\]
+\[
+= \left(\frac{\pi}{\frac{1}{2}\left(n_1^2+\ldots+n_D^2+1\right) }\right)^{-\frac{1}{2}}
+\]
+\[
+= \sqrt{\frac{\left(n_1^2+\ldots+n_D^2+1\right) }{2\pi}}
+\]
+Then,
+\[
+\hat{\mu}(\phi) = \prod_{n_1,\ldots,n_D} A_{n_1,\ldots,n_D} \sqrt{\frac{\pi}{B_{n_1,\ldots,n_D} }} e^{-\frac{(J_{n_1,\ldots,n_D})^2}{4*B_{n_1,\ldots,n_D} }}
+\]
+Therefore, we have that:
+\[
+d\mu(\phi)=\prod_{n_1,\ldots,n_D}e^{-(B_{n_1,\ldots,n_D})(a_{n_1,\ldots,n_D})^2}A_{n_1,\ldots,n_D} da_{n_1,\ldots,n_D}
+\]
+\[
+=\prod_{n_1,\ldots,n_D}e^{-(\frac{1}{2}\left(n_1^2+\ldots+n_D^2+1\right))(a_{n_1,\ldots,n_D})^2}\sqrt{\frac{\left(n_1^2+\ldots+n_D^2+1\right) }{2\pi}} da_{n_1,\ldots,n_D}
+\]
+Now we are able to do the integral we started with:
+\[
+=\int \prod_{n}e^{iJ_{n} a_{n} +
+\left(4\pi(n^2)-1\right) \left(a_{n} e^{-\frac{(n)^2}{\Lambda_k}}\right)^2}d\mu
+\]
+\[
+=\int \prod_{n}e^{iJ_{n} a_{n} +
+\left(4\pi(n^2)-1\right) \left(a_{n} e^{-\frac{(n)^2}{\Lambda_k}}\right)^2}\prod_{n}e^{-(\frac{1}{2}\left(n^2+1\right))(a_{n})^2}\sqrt{\frac{\left(n_1^2+\ldots+n_D^2+1\right) }{2\pi}} da_{n}
+\]
+\[
+=\int \prod_{n}e^{iJ_{n} a_{n} +
+\left(4\pi(n^2)-1\right) \left(a_{n} e^{-\frac{(n)^2}{\Lambda_k}}\right)^2-(\frac{1}{2}\left(n^2+1\right))(a_{n})^2}\sqrt{\frac{\left(n_1^2+\ldots+n_D^2+1\right) }{2\pi}} da_{n}
+\]
+\[
+=\int \prod_{n}e^{iJ_{n} a_{n} +
+\left(4\pi(n^2)-1\right) \left(a_{n} e^{-\frac{(n)^2}{\Lambda_k}}\right)^2-(\frac{1}{2}\left(n^2+1\right))(a_{n})^2}\sqrt{\frac{\left(n_1^2+\ldots+n_D^2+1\right) }{2\pi}} da_{n}
+\]
+Now apply Fubini theorem to get:
+\[
+=\prod_{n}\int e^{iJ_{n} a_{n} +
+\left(4\pi(n^2)-1\right) \left(a_{n} e^{-\frac{(n)^2}{\Lambda_k}}\right)^2-\frac{1}{2}\left(n^2+1\right)(a_{n})^2}\sqrt{\frac{\left(n_1^2+\ldots+n_D^2+1\right) }{2\pi}} da_{n}
+\]
+\[
+=\prod_{n}\int e^{iJ_{n} a_{n} +
+\left(\left(4\pi(n^2)-1\right) e^{-\frac{2n^2}{\Lambda_k}}-\frac{1}{2}\left(n^2+1\right)\right)(a_{n})^2}\sqrt{\frac{\left(n_1^2+\ldots+n_D^2+1\right) }{2\pi}} da_{n}
+\]
+\[
+=\prod_{n}\int e^{iJ_{n} a_{n} +
+\left(\left(4\pi(n^2)-1\right) e^{-\frac{2n^2}{\Lambda_k}}-\frac{1}{2}\left(n^2+1\right)\right)(a_{n})^2}\sqrt{\frac{\left(n_1^2+\ldots+n_D^2+1\right) }{2\pi}} da_{n}
+\]
+\[
+=\prod_{n}\int e^{-(-iJ_{n} a_{n} -
+\left(\left(4\pi(n^2)-1\right) e^{-\frac{2n^2}{\Lambda_k}}-\frac{1}{2}\left(n^2+1\right)\right)(a_{n})^2)}\sqrt{\frac{\left(n_1^2+\ldots+n_D^2+1\right) }{2\pi}} da_{n}
+\]
+\[
+=\prod_{n}\sqrt{\frac{\left(n^2+1\right) }{2\pi}} \sqrt{\frac{\pi}{\left(\left(-4\pi(n^2)+1\right) e^{-\frac{2n^2}{\Lambda_k}}+\frac{1}{2}\left(n^2+1\right)\right)}}\exp\left\{-\frac{J_n^2}{4\left(\left(-4\pi(n^2)+1\right) e^{-\frac{2n^2}{\Lambda_k}}+\frac{1}{2}\left(n^2+1\right)\right)}\right\}
+\]
+\[
+=\prod_{n}\sqrt{\frac{\left(n^2+1\right) }{\left(\left(-8\pi(n^2)+2\right) e^{-\frac{2n^2}{\Lambda_k}}+\left(n^2+1\right)\right)}}\exp\left\{-\frac{J_n^2}{4\left(\left(-4\pi(n^2)+1\right) e^{-\frac{2n^2}{\Lambda_k}}+\frac{1}{2}\left(n^2+1\right)\right)}\right\}
+\]
+Now  substituting in the whole expression:
+$$
+\frac{\int F[\phi] e^{-\int_{B(0, r)} \mathcal{L}\left(\phi_{\Lambda}(x), \ldots,\left(\nabla^{2}\right)^{l} \phi_{\Lambda}(x)\right) d x} d \mu}{\int e^{-\int_{B(0, r)} \mathcal{L}\left(\phi_{\Lambda}(x), \ldots,\left(\nabla^{2}\right)^{l} \phi_{\Lambda}(x)\right) d x} d \mu}
+$$
+It is clear that by similar reasoning that the denominator is:
+$$\prod_{n}\sqrt{\frac{\left(n^2+1\right) }{\left(\left(-8\pi(n^2)+2\right) e^{-\frac{2n^2}{\Lambda_k}}+\left(n^2+1\right)\right)}}$$
+So, we get:
+$$
+\frac{\int F[\phi] e^{-\int_{B(0, r)} \mathcal{L}\left(\phi_{\Lambda}(x), \ldots,\left(\nabla^{2}\right)^{l} \phi_{\Lambda}(x)\right) d x} d \mu}{\int e^{-\int_{B(0, r)} \mathcal{L}\left(\phi_{\Lambda}(x), \ldots,\left(\nabla^{2}\right)^{l} \phi_{\Lambda}(x)\right) d x} d \mu}
+$$
+\[
+=\prod_{n}\exp\left\{-\frac{J_n^2}{4\left(\left(-4\pi(n^2)+1\right) e^{-\frac{2n^2}{\Lambda_k}}+\frac{1}{2}\left(n^2+1\right)\right)}\right\}
+\]
+\[
+=\exp\left\{\sum_{n} -\frac{J_n^2}{\left(-16\pi n^2+4\right) e^{-\frac{2n^2}{\Lambda_k}}+ 2\left(n^2+1\right)}\right\}
+\]
+Let $P$ be an operator on the $Jn's$, such that:
+\[
+P(J_n) = \frac{J_n}{\left(\left(-16\pi n^2+4\right) e^{-\frac{2n^2}{\Lambda_k}}+ 2\left(n^2+1\right)\right)^{1+\alpha}}
+\]
+Where $J_n \in Y$ and $Y$ is the inner product space with the inner product:
+\[
+\langle J_{n_1,..., n_D},J'_{n_1,..., n_D} \rangle = \sum_{n_1,..., n_D} \left(\left(-16\pi n^2+4\right) e^{-\frac{2n^2}{\Lambda_k}}+ 2\left(n^2+1\right)\right)^{\alpha} J_{n_1,..., n_D} \cdot \overline{J'_{n_1,..., n_D}}
+\]
+\section{$A_k$ and $B_k$ are different than zero}
+Now our integral looks like:
+$$\int F[\phi]e^{\int A_k \phi_{\Lambda_k} \nabla^2 \phi_{\Lambda_k} + B_k\phi_{\Lambda_k}^2 dx}d\mu$$
+We follow the same method as before and we get:
+\[
+\int F[\phi]e^{\int A_k \phi_{\Lambda_k} \nabla^2 \phi_{\Lambda_k} + B_k\phi_{\Lambda_k}^2 dx}d\mu
+\]
+\[
+=\exp\left\{\sum_{n} -\frac{J_n^2}{\left(-16 A_k \pi n^2+4 B_k \right) e^{-\frac{2n^2}{\Lambda_k}}+ 2\left(n^2+1\right)}\right\}
+\]
+Now if $\lim\limits_{{k \to \infty}} A_k = \lim\limits_{{k \to \infty}} B_k = 0
+$ we get a measure supported on the original space and if not we get a measure supported on a larger space.
+\section{Now $f_k$ and $g_k$}
+Now our integral looks like:
+$$\int F[\phi]e^{\int f_k\left(\phi_{\Lambda_k} \nabla^2 \phi_{\Lambda_k}\right) + g_k\left(\phi_{\Lambda_k}\right) dx}d\mu$$
+Where $f_k$ and $g_k$ are bounded continuous functions that tend to $x$ and $x^2$ as k go to infinity.\\
+Take:
+\[
+f_k(x)=\begin{cases}
+    x & -\delta_k < x < \delta_k\\
+    \delta_k & \text{otherwise}
+\end{cases}
+\]
+and
+\[
+g_k(x)=\begin{cases}
+    x^2 & -\delta_k < x < \delta_k\\
+    \delta_k^2 & \text{otherwise}
+\end{cases}
+\]
+Where $\delta_k$ goes to infinity as k goes to infinity.\\
+Case 1: $\Lambda_k$ is constant:\\
+Then clearly we have that $f_k$ and $g_k$ are monotone. Also, $f_k$ and $g_k$ are measurable.\\
+Apply Monotone Convergence Theorem on the whole sequence in k inside the integral and we got back what we got in section 6.\\
+Case 2: $\Lambda_k$ is some sequence:
+Now we cannot compute this integral on the space of all $\phi$'s, $X^*$.\\
+Let 
+\[
+B(R) = \{\phi \in X^* : ||\phi||_{X^*} \leq R \}
+\]
+
+Now,
+\[
+\int F[\phi]e^{-\int f_k\left(\phi_{\Lambda_k} \nabla^2 \phi_{\Lambda_k}\right) + g_k\left(\phi_{\Lambda_k}\right) dx}d\mu = \int_{B(R)} F[\phi]e^{-\int f_k\left(\phi_{\Lambda_k} \nabla^2 \phi_{\Lambda_k}\right) + g_k\left(\phi_{\Lambda_k}\right) dx}d\mu + \epsilon_1
+\] where $\epsilon_1$ could be taken arbitrary small by making $R$ larger.\\ 
+This will help us construct the sequence $\{R_k\}$ and make $\epsilon_1$ go to zero as k goes to $\infty$ as follows:
+
+\[
+\epsilon_1=\int F[\phi]e^{-\int f_k\left(\phi_{\Lambda_k} \nabla^2 \phi_{\Lambda_k}\right) + g_k\left(\phi_{\Lambda_k}\right) dx}d\mu  - \int_{B(R)} F[\phi]e^{-\int f_k\left(\phi_{\Lambda_k} \nabla^2 \phi_{\Lambda_k}\right) + g_k\left(\phi_{\Lambda_k}\right) dx}d\mu 
+\]
+
+\[
+= \int_{X^*-B(R)} F[\phi]e^{-\int f_k\left(\phi_{\Lambda_k} \nabla^2 \phi_{\Lambda_k}\right) + g_k\left(\phi_{\Lambda_k}\right) dx}d\mu 
+\]
+\[
+\leq \mu(X^*-B(R)) \|F[\phi]\|_\infty \|e^{-\int f_k\left(\phi_{\Lambda_k} \nabla^2 \phi_{\Lambda_k}\right) + g_k\left(\phi_{\Lambda_k}\right) dx}\|_\infty
+\]
+\[
+=\mu(X^*-B(R))
+\]
+\[
+=1-\mu(B(R))
+\]
+Since this error can be made arbitrary small, then, for each $k$ we can choose an $R_k$ such that:
+\[
+1-\mu(B(R_k)) \leq \frac{1}{k}
+\]
+
+Now since we defined $f_k$ and $g_k$ in terms of $\delta_k$, let us choose $\delta_k$ in a way such that $|\phi_{\Lambda_k}| \leq \delta_k$ and $|\phi_{\Lambda_k} \nabla^2 \phi_{\Lambda_k}| \leq \delta_k$ for all $\phi \in B(R)$.
+
+
+\[
+|\phi_{\Lambda_k}| = \left|\sum_{n_1,\ldots,n_d} a_{n_1,\ldots,n_D}'e^{-\frac{n_1^2+\ldots+n_D^2}{\Lambda_k}}e^{in\theta}\right|
+\]
+\[
+\leq \sum_{n_1,\ldots,n_D} |a_{n_1,\ldots,n_D}'|e^{-\frac{n_1^2+\ldots+n_D^2}{\Lambda_k}}
+\]
+\[
+= \langle a_{n_1,\ldots,n_D}', \frac{(n^2+1)^\alpha}{e^{\frac{n^2}{\Lambda_k}}}\rangle_{X^*}
+\]
+Now, by Cauchy-Schwarz inequality we get:
+\[
+ \langle a_{n_1,\ldots,n_D}', \frac{(n^2+1)^\alpha}{e^{\frac{n^2}{\Lambda_k}}}\rangle_{X^*}
+\]
+\[
+\leq \left(\sum_{n_1,..., n_D} \frac{\left|{a'_{n_1,..., n_D}}\right|^2}{(n_1^2 +...+ n_D^2 + 1)^{\alpha}} \right)^{\frac{1}{2}} \left( \sum_{n_1,\ldots,n_D}\frac{(n^2+1)^\alpha}{e^{\frac{2n^2}{\Lambda_k}}} \right)^{\frac{1}{2}}
+\]
+\[
+=R\left( \sum_{n_1,\ldots,n_D}\frac{(n^2+1)^\alpha}{e^{\frac{2n^2}{\Lambda_k}}} \right)^{\frac{1}{2}}
+\]
+Then choose
+\[
+\delta_k \geq R\left( \sum_{n_1,\ldots,n_D}\frac{(n^2+1)^\alpha}{e^{\frac{2n^2}{\Lambda_k}}} \right)^{\frac{1}{2}}
+\]
+Now, we do the same for $|\phi_{\Lambda_k} \nabla^2 \phi_{\Lambda_k}|$:
+\[
+|\phi_{\Lambda_k} \nabla^2 \phi_{\Lambda_k}| = \left|\sum_{n_1,\ldots,n_d} a_{n_1,\ldots,n_D}'e^{-\frac{n_1^2+\ldots+n_D^2}{\Lambda_k}}e^{in\theta}\sum_{n_1,\ldots,n_d} (-4\pi n^2)a_{n_1,\ldots,n_D}'e^{-\frac{n_1^2+\ldots+n_D^2}{\Lambda_k}}e^{in\theta}\right|
+\]
+\[
+\leq \sum_{n_1,\ldots,n_D} |a_{n_1,\ldots,n_D}'|e^{-\frac{n_1^2+\ldots+n_D^2}{\Lambda_k}}\sum_{n_1,\ldots,n_d} (-4\pi n^2)\left|a_{n_1,\ldots,n_D}'\right|e^{-\frac{n_1^2+\ldots+n_D^2}{\Lambda_k}}
+\]
+\[
+= \langle a_{n_1,\ldots,n_D}', \frac{(n^2+1)^\alpha}{e^{\frac{n^2}{\Lambda_k}}}\rangle_{X^*}\langle a_{n_1,\ldots,n_D}', \frac{4\pi n^2(n^2+1)^\alpha}{e^{\frac{n^2}{\Lambda_k}}}\rangle_{X^*}
+\]
+Now, by Cauchy-Schwarz inequality we get:
+\[
+ \langle a_{n_1,\ldots,n_D}', \frac{(n^2+1)^\alpha}{e^{\frac{n^2}{\Lambda_k}}}\rangle_{X^*} \langle a_{n_1,\ldots,n_D}', \frac{4\pi n^2(n^2+1)^\alpha}{e^{\frac{n^2}{\Lambda_k}}}\rangle_{X^*}
+\]
+\[
+\leq \left(\sum_{n_1,..., n_D} \frac{\left|{a'_{n_1,..., n_D}}\right|^2}{(n_1^2 +...+ n_D^2 + 1)^{\alpha}} \right)^{\frac{1}{2}} \left( \sum_{n_1,\ldots,n_D}\frac{(n^2+1)^\alpha}{e^{\frac{2n^2}{\Lambda_k}}} \right)^{\frac{1}{2}} \ldots
+\]
+
+\[
+\ldots \left(\sum_{n_1,..., n_D} \frac{\left|{a'_{n_1,..., n_D}}\right|^2}{(n_1^2 +...+ n_D^2 + 1)^{\alpha}} \right)^{\frac{1}{2}} \left( \sum_{n_1,\ldots,n_D}\frac{n^4(n^2+1)^\alpha}{e^{\frac{2n^2}{\Lambda_k}}} \right)^{\frac{1}{2}}
+\]
+\[
+=R^2 \left( \sum_{n_1,\ldots,n_D}\frac{(n^2+1)^\alpha}{e^{\frac{2n^2}{\Lambda_k}}} \right)^{\frac{1}{2}} \left( \sum_{n_1,\ldots,n_D}\frac{n^4(n^2+1)^\alpha}{e^{\frac{2n^2}{\Lambda_k}}} \right)^{\frac{1}{2}}
+\]
+Then choose
+\[
+\delta_k \geq R^2 \left( \sum_{n_1,\ldots,n_D}\frac{(n^2+1)^\alpha}{e^{\frac{2n^2}{\Lambda_k}}} \right)^{\frac{1}{2}} \left( \sum_{n_1,\ldots,n_D}\frac{n^4(n^2+1)^\alpha}{e^{\frac{2n^2}{\Lambda_k}}} \right)^{\frac{1}{2}}
+\]
+Thus, if we take:
+\[
+\delta_k \geq \max\left(R\left( \sum_{n_1,\ldots,n_D}\frac{(n^2+1)^\alpha}{e^{\frac{2n^2}{\Lambda_k}}} \right)^{\frac{1}{2}}, R^2 \left( \sum_{n_1,\ldots,n_D}\frac{(n^2+1)^\alpha}{e^{\frac{2n^2}{\Lambda_k}}} \right)^{\frac{1}{2}} \left( \sum_{n_1,\ldots,n_D}\frac{n^4(n^2+1)^\alpha}{e^{\frac{2n^2}{\Lambda_k}}} \right)^{\frac{1}{2}}\right)
+\]
+Then,
+\[
+\int_{B(R)} F[\phi]e^{-\int f_k\left(\phi_{\Lambda_k} \nabla^2 \phi_{\Lambda_k}\right) + g_k\left(\phi_{\Lambda_k}\right) dx}d\mu
+\]
+\[
+=\int_{B(R)} F[\phi]e^{-\int \phi_{\Lambda_k} \nabla^2 \phi_{\Lambda_k} + \phi_{\Lambda_k} dx}d\mu
+\]
+\[
+=\int F[\phi]e^{-\int \phi_{\Lambda_k} \nabla^2 \phi_{\Lambda_k} + \phi_{\Lambda_k} dx}d\mu + \epsilon_2
+\]
+Then,
+
+\[
+\epsilon_2 = \int_{X^*-B(R)} F[\phi]e^{-\int f_k\left(\phi_{\Lambda_k} \nabla^2 \phi_{\Lambda_k}\right) + g_k\left(\phi_{\Lambda_k}\right) dx}d\mu
+\]
+
+\[
+\leq \mu(X^*-B(R)) \|F[\phi]\|_\infty \|e^{-\int \phi_{\Lambda_k} \nabla^2 \phi_{\Lambda_k} + \phi_{\Lambda_k} dx}\|_\infty
+\]
+\[
+=\mu(X^*-B(R))
+\]
+\[
+=1-\mu(B(R))
+\]
+Since this error can be made arbitrary small, then, for each $k$ we can choose an $R_k$ such that:
+\[
+1-\mu(B(R_k)) \leq \frac{1}{k}
+\]
+
+Now, we have that $R_k$, $\Lambda_k$, and $\delta_k$ go to $\infty$ and $\epsilon1$ and $\epsilon_2$ go to zero, as k goes to $\infty$\\
+We can proceed similarly for the term in the denominator: 
+\[
+=\int e^{-\int \phi_{\Lambda_k} \nabla^2 \phi_{\Lambda_k} + \phi_{\Lambda_k} dx}d\mu
+\]
+and we get 2 errors going to zero. Now we have:
+\[
+\int F[\phi]e^{-\int f_k\left(\phi_{\Lambda_k} \nabla^2 \phi_{\Lambda_k}\right) + g_k\left(\phi_{\Lambda_k}\right) dx}d\mu =\int F[\phi]e^{-\int \phi_{\Lambda_k} \nabla^2 \phi_{\Lambda_k} + \phi_{\Lambda_k} dx}d\mu + \epsilon_1 +\epsilon_2
+\]
+and 
+\[
+\int e^{-\int f_k\left(\phi_{\Lambda_k} \nabla^2 \phi_{\Lambda_k}\right) + g_k\left(\phi_{\Lambda_k}\right) dx}d\mu =\int e^{-\int \phi_{\Lambda_k} \nabla^2 \phi_{\Lambda_k} + \phi_{\Lambda_k} dx}d\mu + \epsilon_3 +\epsilon_4
+\]
+
+Now, we take the limit:
+\[
+L\left(\frac{\int F[\phi]e^{-\int f_k\left(\phi_{\Lambda_k} \nabla^2 \phi_{\Lambda_k}\right) + g_k\left(\phi_{\Lambda_k}\right) dx}d\mu}{\int e^{-\int f_k\left(\phi_{\Lambda_k} \nabla^2 \phi_{\Lambda_k}\right) + g_k\left(\phi_{\Lambda_k}\right) dx}d\mu}   \right)
+\]
+\[
+=L\left(\frac{\int F[\phi]e^{-\int \phi_{\Lambda_k} \nabla^2 \phi_{\Lambda_k} + \phi_{\Lambda_k} dx}d\mu + \epsilon_1 +\epsilon_2}{\int e^{-\int \phi_{\Lambda_k} \nabla^2 \phi_{\Lambda_k} + \phi_{\Lambda_k} dx}d\mu + \epsilon_3 +\epsilon_4}   \right)
+\]
+\[
+=L\left(\frac{\int F[\phi]e^{-\int \phi_{\Lambda_k} \nabla^2 \phi_{\Lambda_k} + \phi_{\Lambda_k} dx}d\mu}{\int e^{-\int \phi_{\Lambda_k} \nabla^2 \phi_{\Lambda_k} + \phi_{\Lambda_k} dx}d\mu + \epsilon_3 +\epsilon_4}   
++ \frac{\epsilon_1 +\epsilon_2}{\int e^{-\int \phi_{\Lambda_k} \nabla^2 \phi_{\Lambda_k} + \phi_{\Lambda_k} dx}d\mu + \epsilon_3 +\epsilon_4}\right)\]
+\[
+=L\left(\frac{\int F[\phi]e^{-\int \phi_{\Lambda_k} \nabla^2 \phi_{\Lambda_k} + \phi_{\Lambda_k} dx}d\mu}{\int e^{-\int \phi_{\Lambda_k} \nabla^2 \phi_{\Lambda_k} + \phi_{\Lambda_k} dx}d\mu}\right) 
+\]
+But now, the expression inside is something we already computed.Hence:
+\[
+L\left(\frac{\int F[\phi]e^{-\int \phi_{\Lambda_k} \nabla^2 \phi_{\Lambda_k} + \phi_{\Lambda_k} dx}d\mu}{\int e^{-\int \phi_{\Lambda_k} \nabla^2 \phi_{\Lambda_k} + \phi_{\Lambda_k} dx}d\mu}\right)
+\]
+\[
+= L\left(\exp\left\{\sum_{n} -\frac{J_n^2}{\left(-16\pi n^2+4\right) e^{-\frac{2n^2}{\Lambda_k}}+ 2\left(n^2+1\right)}\right\}\right)
+\]
+\[
+=\exp\left\{\sum_{n} -\frac{J_n^2}{2\left(n^2+1\right)}\right\}
+\]
+
+\section{What if $A_k$ and $B_k$ are not one}
+easy
+\section{Add the $C_k$}
+\[
+\int F[\phi]e^{-\int A_k f_k\left(\phi_{\Lambda_k} \nabla^2 \phi_{\Lambda_k}\right) + B_k g_k\left(\phi_{\Lambda_k}\right) + C_k h_k\left(\phi_{\Lambda_k}\right)dx}d\mu 
+\]
+
+\[
+=\int F[\phi]e^{-\int A_k f_k\left(\phi_{\Lambda_k} \nabla^2 \phi_{\Lambda_k}\right) + B_k g_k\left(\phi_{\Lambda_k}\right)dx} e^{-\int C_k h_k\left(\phi_{\Lambda_k}\right)dx}d\mu 
+\]
+
+In this case, and since we a have to choose $C_k$, we can choose it to go to zero fast enough so that:
+\[
+L\left(e^{-\int C_k h_k\left(\phi_{\Lambda_k}\right)dx}\right) = 1
+\]
+For this to happen, we need $-\int C_k h_k\left(\phi_{\Lambda_k}\right)dx$ to go to zero fast enough, and hence, $ C_k h_k\left(\phi_{\Lambda_k}\right)$, to go to zero fast enough.\\
+We know that:
+\[
+0 \leq e^{-\int C_k h_k\left(\phi_{\Lambda_k}\right)dx} \leq 1
+\]
+But $h_k\left(\phi_{\Lambda_k}\right) \leq (\delta_k)^4$, then:
+\[
+0 \leq e^{-\int C_k (\delta_k)^4 dx} \leq e^{-\int C_k h_k\left(\phi_{\Lambda_k}\right)dx} \leq 1
+\]
+\[
+0 \leq e^{-C_k (\delta_k)^4\int  dx} \leq e^{-\int C_k h_k\left(\phi_{\Lambda_k}\right)dx} \leq 1
+\]
+\[
+0 \leq e^{-C_k (\delta_k)^4 (2\pi)^D} \leq e^{-\int C_k h_k\left(\phi_{\Lambda_k}\right)dx} \leq 1
+\]
+We have aim to sandwich $e^{-\int C_k h_k\left(\phi_{\Lambda_k}\right)dx}$ by 1 on both sides. Therefore, Let's make the left side go to 1 as k go to $\infty$, hence, the exponent of the left side go to zero as k go to $\infty$:
+\[
+C_k (\delta_k)^4 (2\pi)^D < \frac{1}{k}
+\]
+\[
+C_k < \frac{1}{k (\delta_k)^4 (2\pi)^D}
+\]
+
+Now, since we achieved:
+\[
+L\left(e^{-\int C_k h_k\left(\phi_{\Lambda_k}\right)dx}\right) = 1
+\]
+Let's look at:
+
+\[
+L\left(\int F[\phi]e^{-\int A_k f_k\left(\phi_{\Lambda_k} \nabla^2 \phi_{\Lambda_k}\right) + B_k g_k\left(\phi_{\Lambda_k}\right) + C_k h_k\left(\phi_{\Lambda_k}\right)dx}d\mu\right) 
+\]
+
+\[
+=L\left(\int F[\phi]e^{-\int A_k f_k\left(\phi_{\Lambda_k} \nabla^2 \phi_{\Lambda_k}\right) + B_k g_k\left(\phi_{\Lambda_k}\right)dx} e^{-\int C_k h_k\left(\phi_{\Lambda_k}\right)dx}d\mu\right)
+\]
+Now, since all of what is in the integral is bounded, we can apply the dominated convergence theorem and take the limit inside. But then, the last term on the left will converge to 1 and we get:
+\[
+=L\left(\int F[\phi]e^{-\int A_k f_k\left(\phi_{\Lambda_k} \nabla^2 \phi_{\Lambda_k}\right) + B_k g_k\left(\phi_{\Lambda_k}\right)dx} d\mu\right)
+\]
+
+
+\end{document}
